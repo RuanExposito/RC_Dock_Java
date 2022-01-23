@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import implementations.General;
+import implementations.*;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -16,6 +16,7 @@ public class StepDefinitions {
 	
 	WebDriver driver = null;
 	General general = null;
+	VehicleData vehicleData = null;
 	
 	@Before
 	public void setup(){
@@ -25,6 +26,7 @@ public class StepDefinitions {
 		driver.get("http://sampleapp.tricentis.com/101/app.php");
 		driver.manage().window().maximize();
 		general = new General();
+		vehicleData = new VehicleData();
 	}
 	
 	@After
@@ -40,8 +42,14 @@ public class StepDefinitions {
 
 	@When("I enter the vehicle data")
 	public void i_enter_the_vehicle_data() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    vehicleData.fillCarModel(driver);
+	    vehicleData.fillManufactureDate(driver);
+	    vehicleData.fillNumberOfSeats(driver);
+	    vehicleData.selectFuelType(driver);
+	    vehicleData.fillListPrice(driver);
+	    vehicleData.fillLicensePlate(driver);
+	    vehicleData.fillAnnualMileage(driver);
+	    general.goToNextPage(driver);
 	}
 
 	@When("I enter the insurant data")
