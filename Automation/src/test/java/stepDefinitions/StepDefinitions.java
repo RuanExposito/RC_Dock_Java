@@ -40,15 +40,15 @@ public class StepDefinitions {
 
 	@When("I enter the vehicle data")
 	public void i_enter_the_vehicle_data() {
-		VehicleData vehicleData = new VehicleData();
+		VehicleData vehicleData = new VehicleData(driver);
 		
-	    vehicleData.fillCarModel(driver);
-	    vehicleData.fillManufactureDate(driver);
-	    vehicleData.fillNumberOfSeats(driver);
-	    vehicleData.selectFuelType(driver);
-	    vehicleData.fillListPrice(driver);
-	    vehicleData.fillLicensePlate(driver);
-	    vehicleData.fillAnnualMileage(driver);
+	    vehicleData.fillCarModel();
+	    vehicleData.fillManufactureDate();
+	    vehicleData.fillNumberOfSeats();
+	    vehicleData.selectFuelType();
+	    vehicleData.fillListPrice();
+	    vehicleData.fillLicensePlate();
+	    vehicleData.fillAnnualMileage();
 	    
 	    general.goToNextPage(driver,"nextenterinsurantdata");
 	}

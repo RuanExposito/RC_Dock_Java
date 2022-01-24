@@ -7,9 +7,14 @@ import org.openqa.selenium.support.ui.Select;
 
 public class VehicleData {
 	
+	WebDriver driver;
 	General general = new General();
 	
-	public void fillCarModel(WebDriver driver) {
+	public VehicleData(WebDriver driver) {
+		this.driver = driver; 
+	}
+	
+	public void fillCarModel() {
 		WebElement selectMakeElement = driver.findElement(By.id("make"));
 		Select selectMake = new Select(selectMakeElement);
 		selectMake.selectByValue("Audi");
@@ -25,11 +30,11 @@ public class VehicleData {
 		driver.findElement(By.id("engineperformance")).sendKeys("1234");
 	}
 	
-	public void fillManufactureDate(WebDriver driver) {
+	public void fillManufactureDate() {
 		driver.findElement(By.id("dateofmanufacture")).sendKeys("12/12/2012");
 	}
 	
-	public void fillNumberOfSeats(WebDriver driver) {
+	public void fillNumberOfSeats() {
 		WebElement selectSeatsElement = driver.findElement(By.id("numberofseats"));
 		Select selectSeats = new Select(selectSeatsElement);
 		selectSeats.selectByValue("4");
@@ -43,7 +48,7 @@ public class VehicleData {
 		}
 	}
 	
-	public void selectFuelType(WebDriver driver) {
+	public void selectFuelType() {
 		WebElement selectFuelElement = driver.findElement(By.id("fuel"));
 		Select selectFuel = new Select(selectFuelElement);
 		selectFuel.selectByValue("Petrol");
@@ -54,15 +59,15 @@ public class VehicleData {
 		}
 	}
 	
-	public void fillListPrice(WebDriver driver) {
+	public void fillListPrice() {
 		driver.findElement(By.id("listprice")).sendKeys("1234");
 	}
 	
-	public void fillLicensePlate(WebDriver driver) {
+	public void fillLicensePlate() {
 		driver.findElement(By.id("licenseplatenumber")).sendKeys("1234");
 	}
 	
-	public void fillAnnualMileage(WebDriver driver) {
+	public void fillAnnualMileage() {
 		driver.findElement(By.id("annualmileage")).sendKeys("1234");
 	}
 }
