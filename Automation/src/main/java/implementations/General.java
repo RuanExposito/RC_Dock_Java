@@ -20,7 +20,7 @@ public class General {
 	    }
 	}
 	
-	public void goToNextPage(WebDriver driver) {
-		driver.findElement(By.id("nextenterinsurantdata")).click();
+	public void goToNextPage(WebDriver driver, String nextPageId) {
+		driver.findElement(By.id(nextPageId)).click();
 	}
 }
