@@ -2,6 +2,7 @@ package stepDefinitions;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -89,8 +90,11 @@ public class StepDefinitions {
 	@When("I select the price option")
 	public void i_select_the_price_option() {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		
+		driver.findElements(By.className("ideal-radio")).get(5).click();
+		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		general.goToNextPage("nextsendquote");
 	}
 
 	@When("I send quote")
