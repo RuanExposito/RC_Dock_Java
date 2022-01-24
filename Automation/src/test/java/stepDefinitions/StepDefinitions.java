@@ -100,8 +100,16 @@ public class StepDefinitions {
 	@When("I send quote")
 	public void i_send_quote() {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		
+		SendQuote sendQuote = new SendQuote(driver);
+		
+		sendQuote.fillEmail();
+		sendQuote.fillPhone();
+		sendQuote.fillUsername();
+		sendQuote.fillPassword();
+		sendQuote.fillComments();
+	    
+		general.goToNextPage("sendemail");
 	}
 
 	@Then("I see the success feedback")
