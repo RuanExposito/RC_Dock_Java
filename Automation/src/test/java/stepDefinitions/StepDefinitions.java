@@ -113,9 +113,9 @@ public class StepDefinitions {
 	}
 
 	@Then("I see the success feedback")
-	public void i_see_the_success_feedback() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void i_see_the_success_feedback() throws Exception {
+		general.waitLoadsFinish();
+		general.validateSuccessFeedback();
 	}
 
 	

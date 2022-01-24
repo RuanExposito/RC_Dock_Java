@@ -2,6 +2,7 @@ package implementations;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -59,4 +60,30 @@ public class General {
 		
 		return futureDate;
 	}
+	
+	public void waitLoadsFinish() {
+		int count = 0;
+		
+		while(count <= 12) { //Wait element 2 minutes before error
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			
+			if(driver.findElements(By.id("LoadingPDF")).size() == 0) {
+				break;
+			}
+			else {
+				count += 1;
+			}
+		}
+	}
+	
+	
+	public void validateSuccessFeedback() throws Exception {
+		String elementStyle = driver.findElement(By.xpath("//div[@class=\"sa-icon sa-success animate\"]")).getAttribute("style");
+		
+		if(!"display: block;".equals(elementStyle)) {
+			throw new Exception("We aren't seeing the Success Feedback");
+		}
+		
+	}
+	
 }
