@@ -19,7 +19,8 @@
 
 
 Feature: Testing Tricentis forms
-
+	
+	@generalized_scenario
   Scenario: Validate pages from Tricentis
     Given I am at Tricentis page
     When I enter the vehicle data 

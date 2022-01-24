@@ -30,8 +30,7 @@ public class StepDefinitions {
 	
 	@After
 	public void teardown() {
-		//driver.close();
-		//driver.quit();
+		driver.quit();
 	}
 	
 	@Given("I am at Tricentis page")
