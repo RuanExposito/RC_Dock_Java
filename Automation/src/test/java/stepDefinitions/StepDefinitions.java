@@ -24,7 +24,7 @@ public class StepDefinitions {
 		
 		driver.get("http://sampleapp.tricentis.com/101/app.php");
 		driver.manage().window().maximize();
-		general = new General();
+		general = new General(driver);
 	}
 	
 	@After
@@ -35,7 +35,7 @@ public class StepDefinitions {
 	
 	@Given("I am at Tricentis page")
 	public void i_am_at_tricentis_page() throws Exception {
-	    general.mainTricentisPage(driver);
+	    general.mainTricentisPage();
 	}
 
 	@When("I enter the vehicle data")
@@ -50,7 +50,7 @@ public class StepDefinitions {
 	    vehicleData.fillLicensePlate();
 	    vehicleData.fillAnnualMileage();
 	    
-	    general.goToNextPage(driver,"nextenterinsurantdata");
+	    general.goToNextPage("nextenterinsurantdata");
 	}
 
 	@When("I enter the insurant data")
@@ -66,14 +66,24 @@ public class StepDefinitions {
 	    insurantData.fillOcupationAndHobbie();
 	    insurantData.insertMyWebsite();
 	    
-	    general.goToNextPage(driver,"nextenterproductdata");
+	    general.goToNextPage("nextenterproductdata");
 	}
 
 	@When("I enter the product data")
 	public void i_enter_the_product_data() {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+
+		ProductData productData = new ProductData(driver);
+		
+		productData.addStartDate();
+		productData.selectInsuranceSum();
+		productData.selectMeritRating();
+		productData.selectDmgInsurance();
+		productData.chooseOptionalProducts();
+		productData.selectCourtesyCar();
+
+		general.goToNextPage("nextselectpriceoption");
+		
 	}
 
 	@When("I select the price option")

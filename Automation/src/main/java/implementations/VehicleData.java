@@ -8,10 +8,11 @@ import org.openqa.selenium.support.ui.Select;
 public class VehicleData {
 	
 	WebDriver driver;
-	General general = new General();
+	General general;
 	
 	public VehicleData(WebDriver driver) {
-		this.driver = driver; 
+		this.driver = driver;
+		this.general = new General(this.driver);
 	}
 	
 	public void fillCarModel() {
@@ -19,7 +20,7 @@ public class VehicleData {
 		Select selectMake = new Select(selectMakeElement);
 		selectMake.selectByValue("Audi");
 		
-		if (general.elementIsPresent(driver, "model")) {
+		if (general.elementIsPresent("model")) {
 			WebElement selectModelElement = driver.findElement(By.id("model"));
 			Select selectModel = new Select(selectModelElement);
 			selectModel.selectByValue("Scooter");
@@ -39,7 +40,7 @@ public class VehicleData {
 		Select selectSeats = new Select(selectSeatsElement);
 		selectSeats.selectByValue("4");
 		
-		if(general.elementIsPresent(driver, "righthanddriveyes")) {
+		if(general.elementIsPresent("righthanddriveyes")) {
 			driver.findElements(By.className("ideal-radio")).get(0).click();
 			
 			WebElement selectSeatsMotorcycleElement = driver.findElement(By.id("numberofseatsmotorcycle"));
@@ -53,7 +54,7 @@ public class VehicleData {
 		Select selectFuel = new Select(selectFuelElement);
 		selectFuel.selectByValue("Petrol");
 		
-		if(general.elementIsPresent(driver, "payload")) {
+		if(general.elementIsPresent("payload")) {
 			driver.findElement(By.id("payload")).sendKeys("123");
 			driver.findElement(By.id("totalweight")).sendKeys("123");
 		}
